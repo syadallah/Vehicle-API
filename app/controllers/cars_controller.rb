@@ -1,4 +1,4 @@
-class CarsController < ApplicationController
+class CarsController < OpenReadController
   before_action :set_car, only: [:show, :update, :destroy]
 
   # GET /cars
@@ -15,7 +15,7 @@ class CarsController < ApplicationController
 
   # POST /cars
   def create
-    @car = Car.new(car_params)
+    @car = current_user.cars.build(car_params)
 
     if @car.save
       render json: @car, status: :created, location: @car
