@@ -3,7 +3,7 @@ class CarsController < OpenReadController
 
   # GET /cars
   def index
-    @cars = Car.all
+    @cars = current_user.cars.all
 
     render json: @cars
   end
@@ -41,7 +41,7 @@ class CarsController < OpenReadController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_car
-      @car = Car.find(params[:id])
+      @car = current_user.cars.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
